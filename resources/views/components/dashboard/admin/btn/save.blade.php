@@ -1,0 +1,1 @@
+<button class="btn btn-primary mt-3"><i class="bi bi-save fs-4"></i>@lang('admin.global.save')</button>

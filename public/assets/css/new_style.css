@@ -1,0 +1,61 @@
+table.dataTable > thead > tr > th:not(.sorting_disabled) {
+    padding-right: 0 !important;
+}
+.dt-buttons,
+div.dataTables_wrapper div.dataTables_filter {
+    display: none !important;
+}
+body {
+    font-family: 'cairo', 'sans-serif';
+}
+.breadcrumb-item + .breadcrumb-item {
+    padding-left: 0.5rem;
+}
+.breadcrumb-item+.breadcrumb-item::before {
+    float: right;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    padding-left: .5rem;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 2px 2px;
+}
+
+.has-error .select2-selection {
+    border-color: rgb(185, 74, 72) !important;
+}
+
+.app-sidebar::-webkit-scrollbar {
+    width: 15px;
+    height: 8px;
+    background-color: #aaa; /* or add it to the track */
+}
+
+.bg-hover {
+    background-color: #dee2e6;
+}
+
+.bg-danger-datatable {
+    background-color: #e7081e33;
+}
+
+.table-bordered {
+    border: 3px solid #dee2e6 !important;
+}
+
+td, tr, th {
+    text-align: center;
+}
+
+label, th, li {
+    text-transform: capitalize;
+}
+
+.header-fixed.toolbar-fixed .wrapper {
+     padding-top: calc(15px + var(--kt-toolbar-height)) !important; 
+}
+
+.custom-menu-item {
+    font-size: 16px;
+}

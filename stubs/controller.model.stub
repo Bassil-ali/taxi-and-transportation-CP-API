@@ -1,0 +1,74 @@
+<?php
+
+namespace {{ namespace }};
+use {{ namespacedModel }};
+use {{ rootNamespace }}Http\Controllers\Controller;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+use {{ rootNamespace }}Http\Requests\Store{{ model }}Request;
+use {{ rootNamespace }}Http\Requests\Update{{ model }}Request;
+
+
+class {{ class }} extends Controller
+{
+
+    public static function routeName(){
+        return Str::snake("{{model}}");
+    }
+    public function __construct(Request $request){
+        parent::__construct($request);
+        $this->authorizeResource({{ model }}::class,Str::snake("{{model}}"));
+    }
+    public function index(Request $request)
+    {
+        ${{model}}s = {{model}}::search($request)->sort($request)->paginate(15);
+
+        return response()->view('', compact('{{model}}s'));
+
+    }
+
+    public function create (){
+
+         return response()->view('');
+
+    }
+
+
+    public function store(Store{{ model }}Request $request)
+    {
+        ${{ modelVariable }} = {{ model }}::create($request->validated());
+
+          return response()->json(['message' => ${{ modelVariable }} ? 'Created Successfully' : 'Failed To Create'], ${{ modelVariable }} ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);
+    }
+
+    public function show(Request $request,{{ model }} ${{ modelVariable }})
+    {
+         return response()->view('', compact('{{ modelVariable }}'));
+    }
+
+    public function edit({{ model }} ${{ modelVariable }}){
+
+
+         return response()->view('', compact('{{ modelVariable }}'));
+
+    }
+
+    public function update(Update{{ model }}Request $request, {{ model }} ${{ modelVariable }})
+    {
+        ${{ modelVariable }}->update($request->validated());
+
+         return response()->json(['message' => ${{ modelVariable }} ? 'Updated Successfully' : 'Failed To Updated'], ${{ modelVariable }} ?Response::HTTP_OK : Response::HTTP_BAD_REQUEST);
+    }
+
+    public function destroy(Request $request,{{ model }} ${{ modelVariable }})
+    {
+        $deleted = ${{ modelVariable }}->delete();
+
+        if ($deleted) {
+            return response()->json(['title' => 'Deleted!', 'message' => ' Deleted Successfully', 'icon' => 'success'], Response::HTTP_OK);
+        } else {
+            return response()->json(['title' => 'Failed!', 'message' => 'Delete Failed', 'icon' => 'error'],  Response::HTTP_BAD_REQUEST);
+        }
+    }
+}
